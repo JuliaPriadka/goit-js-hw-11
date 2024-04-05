@@ -58,6 +58,65 @@ body {
 
 .gallery {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
-  width: calc((100% - 24px * 2) / 3);
+  padding: 32px 156px;
+}
+
+.card {
+  box-sizing: border-box;
+  width: calc((100% - 2 * 24px) / 3);
+  height: 200px;
+  border: 1px solid #808080;
+}
+
+.card-img {
+  height: 152px;
+  width: 100%;
+}
+
+.card-stats {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 4px 20px;
+}
+
+.card-stats-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.card-stats-info {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #808080;
+  border-bottom-color: #4e75ff;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  /* display: none; */
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

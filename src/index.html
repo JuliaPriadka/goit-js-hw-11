@@ -9,10 +9,16 @@
   </head>
   <body>
     <form class="form">
-      <input type="text" class="form-input" placeholder="Search images..." />
+      <input
+        type="text"
+        class="form-input"
+        name="input"
+        placeholder="Search images..."
+      />
       <button class="search-btn">Search</button>
     </form>
 
+    <span class="loader"></span>
     <ul class="gallery"></ul>
 
     <script type="module" src="./main.js"></script>
