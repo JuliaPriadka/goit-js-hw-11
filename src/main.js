@@ -14,22 +14,19 @@ const lightbox = new SimpleLightbox('.card a', {
 const form = document.querySelector('.form');
 const container = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
-const formInput = document.querySelector(".form-input");
+const formInput = document.querySelector('.form-input');
 
 form.addEventListener('submit', onFormSubmit);
-formInput.addEventListener("click", onInputClick)
 
 loader.style.display = 'none';
 
-function onInputClick() {
-    container.innerHTML = '';
-    loader.style.display = '';
-}
 
 function onFormSubmit(event) {
   event.preventDefault();
-  
+
+  container.innerHTML = '';
   loader.style.display = '';
+
   const userSearch = event.target.elements.input.value.trim();
 
   if (userSearch.length === 0) {
@@ -39,7 +36,6 @@ function onFormSubmit(event) {
       messageColor: '#fff',
       position: 'center',
     });
-    container.innerHTML = '';
     return;
   }
 
@@ -60,16 +56,14 @@ function onFormSubmit(event) {
       container.innerHTML = createMarkup(data.hits);
 
       lightbox.refresh();
-
     })
     .catch(error => {
       iziToast.show({
-          message:
-            `${error}`,
-          backgroundColor: ' #ffa000',
-          messageColor: '#fff',
-          position: 'center',
-        });
+        message: `${error}`,
+        backgroundColor: ' #ffa000',
+        messageColor: '#fff',
+        position: 'center',
+      });
     })
     .finally(() => form.reset());
 }
