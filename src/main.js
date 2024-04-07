@@ -14,7 +14,7 @@ const lightbox = new SimpleLightbox('.card a', {
 const form = document.querySelector('.form');
 const container = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
-const formInput = document.querySelector('.form-input');
+
 
 form.addEventListener('submit', onFormSubmit);
 
