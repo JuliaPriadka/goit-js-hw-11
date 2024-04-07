@@ -7,19 +7,29 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { getImages } from './js/pixabay-api.js';
 import { createMarkup } from './js/render-functions.js';
 
+const lightbox = new SimpleLightbox('.card a', {
+  captionsData: 'alt',
+});
+
 const form = document.querySelector('.form');
 const container = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const formInput = document.querySelector(".form-input");
 
 form.addEventListener('submit', onFormSubmit);
+formInput.addEventListener("click", onInputClick)
 
 loader.style.display = 'none';
 
+function onInputClick() {
+    container.innerHTML = '';
+    loader.style.display = '';
+}
+
 function onFormSubmit(event) {
   event.preventDefault();
-
+  
   loader.style.display = '';
-
   const userSearch = event.target.elements.input.value.trim();
 
   if (userSearch.length === 0) {
@@ -49,12 +59,17 @@ function onFormSubmit(event) {
 
       container.innerHTML = createMarkup(data.hits);
 
-      const lightbox = new SimpleLightbox('.card a', {
-        captionsData: 'alt',
-      });
+      lightbox.refresh();
+
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      iziToast.show({
+          message:
+            `${error}`,
+          backgroundColor: ' #ffa000',
+          messageColor: '#fff',
+          position: 'center',
+        });
+    })
     .finally(() => form.reset());
 }
-
-
